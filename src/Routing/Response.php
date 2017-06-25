@@ -2,7 +2,7 @@
 
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
-class ResponseService
+class Response
 {
     /**
      * Throw a HTTP error response.

@@ -2,7 +2,7 @@
 
 use Illuminate\Routing\ResponseFactory;
 use Illuminate\Support\ServiceProvider;
-use Kevindierkx\Api\Routing\ResponseService;
+use Kevindierkx\Api\Routing\Response;
 use ReflectionClass;
 
 class RoutingServiceProvider extends ServiceProvider
@@ -22,7 +22,7 @@ class RoutingServiceProvider extends ServiceProvider
      */
     protected function registerResponseMacros()
     {
-        $reflection = new ReflectionClass(ResponseService::class);
+        $reflection = new ReflectionClass(Response::class);
 
         foreach ($reflection->getMethods() as $method) {
             $name = $method->getName();
@@ -42,7 +42,7 @@ class RoutingServiceProvider extends ServiceProvider
     protected function registerMacro($name)
     {
         ResponseFactory::macro($name, function () use ($name) {
-            return call_user_func_array(ResponseService::class.'::'.$name, func_get_args());
+            return call_user_func_array(Response::class.'::'.$name, func_get_args());
         });
     }
 }
